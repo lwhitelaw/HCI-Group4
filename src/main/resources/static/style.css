@@ -13,7 +13,7 @@ body {
 /* font */
 .header-font {
 	margin: 0px;
-	padding: 0px;
+	padding: 4px;
 	font-size: 200%;
 	text-align: left;
 }
@@ -65,5 +65,20 @@ a.green-gradient:link, a.red-gradient:visited {
 
 a.green-gradient:hover {
 	background: linear-gradient(180deg, rgba(0,170,0,1) 0%, rgba(0,102,0,1) 49%, rgba(0,68,0,1) 51%, rgba(0,136,0,1) 100%);
+	text-decoration: none;
+}
+
+/* grey */
+.grey-gradient {
+	background: linear-gradient(180deg, rgba(136,136,136,1) 0%, rgba(68,68,68,1) 49%, rgba(34,34,34,1) 51%, rgba(102,102,102,1) 100%);
+	color: white;
+}
+
+a.grey-gradient:link, a.red-gradient:visited {
+	text-decoration: none;
+}
+
+a.grey-gradient:hover {
+	background: linear-gradient(180deg, rgba(170,170,170,1) 0%, rgba(102,102,102,1) 49%, rgba(68,68,68,1) 51%, rgba(136,136,136,1) 100%);
 	text-decoration: none;
 }
