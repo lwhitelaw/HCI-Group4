@@ -2,6 +2,7 @@
 
 /* background */
 body {
+	user-select: none;
 	background: linear-gradient(180deg, rgba(34,34,34,1) 0%, rgba(17,17,17,1) 100%);
 	background-attachment: fixed;
 	color: white;
@@ -126,6 +127,12 @@ a.grey-gradient:active, button.grey-gradient:active {
 	margin-bottom: 4px;
 }
 
+.very-large {
+	font-size: 200%;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
 /* blank links */
 a.blank:link, a.blank:visited, a.blank:hover {
 	color: inherit;
@@ -152,7 +159,7 @@ li {
 }
 
 /* while links look like buttons when styled with gradients, actual
-buttons need some handholding */
-button {
+buttons and inputs need some handholding */
+button, input {
 	border: 0px;
 }
