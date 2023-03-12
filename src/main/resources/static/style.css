@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+body {
+	background: linear-gradient(180deg, rgba(34,34,34,1) 0%, rgba(17,17,17,1) 100%);
+	background-attachment: fixed;
+	color: white;
+	font-family: "Trebuchet MS","Gill Sans MT","Segoe UI","Helvetica","Arial";
+	margin: 0px;
+}
+
+.neutral-gradient {
+	background: linear-gradient(180deg, rgba(51,51,68,1) 0%, rgba(34,34,51,1) 49%, rgba(17,17,34,1) 51%, rgba(34,34,51,1) 100%);
+	color: white;
+	margin: 0px;
+	padding: 0px;
+	font-size: 200%;
+	text-align: left;
+}
+
+.header {
+	position: sticky;
+	top: 0;
+	width: 100%
+}
+
+.footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%
+}
