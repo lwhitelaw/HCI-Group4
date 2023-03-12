@@ -39,6 +39,12 @@ body {
 	width: 100%
 }
 
+/* right justification */
+.right {
+	text-align: right;
+	float: right
+}
+
 /* coloured gradients for link buttons */
 /* red */
 .red-gradient {
@@ -95,4 +101,10 @@ a.grey-gradient:hover {
 	font-size: 400%;
 	margin-top: 4px;
 	margin-bottom: 4px;
+}
+
+/* blank links */
+a.blank:link, a.blank:visited, a.blank:hover {
+	color: inherit;
+	text-decoration: none;
 }
