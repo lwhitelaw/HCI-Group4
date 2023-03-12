@@ -28,12 +28,15 @@ body {
 .header {
 	position: sticky;
 	top: 0;
+	padding-top: 4px;
+	padding-bottom: 4px;
 	width: 100%
 }
 
 .footer {
 	position: fixed;
 	bottom: 0;
+	padding-left: 4px;
 	padding-top: 4px;
 	padding-bottom: 4px;
 	width: 100%
@@ -43,6 +46,11 @@ body {
 .right {
 	text-align: right;
 	float: right
+}
+
+/* fill to container */
+.expand {
+	width: 100%;
 }
 
 /* coloured gradients for link buttons */
