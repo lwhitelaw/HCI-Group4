@@ -108,3 +108,22 @@ a.blank:link, a.blank:visited, a.blank:hover {
 	color: inherit;
 	text-decoration: none;
 }
+
+/* transparent lists */
+ul {
+	list-style-position: inside;
+	list-style-type: none;
+	padding-left: 16px;
+	padding-right: 16px;
+}
+
+li {
+	background: linear-gradient(180deg, #00000000 0%, #FFFFFF22 100%);
+	border-style: solid;
+	border-color: #777777;
+	border-width: 1px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
