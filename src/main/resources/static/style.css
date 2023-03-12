@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+/* background */
 body {
 	background: linear-gradient(180deg, rgba(34,34,34,1) 0%, rgba(17,17,17,1) 100%);
 	background-attachment: fixed;
@@ -8,6 +9,8 @@ body {
 	margin: 0px;
 }
 
+/* header/footer properties */
+/* font */
 .header-font {
 	margin: 0px;
 	padding: 0px;
@@ -15,21 +18,13 @@ body {
 	text-align: left;
 }
 
+/* bars-gradient */
 .neutral-gradient {
 	background: linear-gradient(180deg, rgba(51,51,68,1) 0%, rgba(34,34,51,1) 49%, rgba(17,17,34,1) 51%, rgba(34,34,51,1) 100%);
 	color: white;
 }
 
-.red-gradient {
-	background: linear-gradient(180deg, rgba(136,0,0,1) 0%, rgba(68,0,0,1) 49%, rgba(34,0,0,1) 51%, rgba(102,0,0,1) 100%);
-	color: white;
-}
-
-.green-gradient {
-	background: linear-gradient(180deg, rgba(0,136,0,1) 0%, rgba(0,68,0,1) 49%, rgba(0,34,0,1) 51%, rgba(0,102,0,1) 100%);
-	color: white;
-}
-
+/* stickyness */
 .header {
 	position: sticky;
 	top: 0;
@@ -40,4 +35,35 @@ body {
 	position: fixed;
 	bottom: 0;
 	width: 100%
+}
+
+/* coloured gradients for link buttons */
+/* red */
+.red-gradient {
+	background: linear-gradient(180deg, rgba(136,0,0,1) 0%, rgba(68,0,0,1) 49%, rgba(34,0,0,1) 51%, rgba(102,0,0,1) 100%);
+	color: white;
+}
+
+a.red-gradient:link, a.red-gradient:visited {
+	text-decoration: none;
+}
+
+a.red-gradient:hover {
+	background: linear-gradient(180deg, rgba(170,0,0,1) 0%, rgba(102,0,0,1) 49%, rgba(68,0,0,1) 51%, rgba(136,0,0,1) 100%);
+	text-decoration: none;
+}
+
+/* green */
+.green-gradient {
+	background: linear-gradient(180deg, rgba(0,136,0,1) 0%, rgba(0,68,0,1) 49%, rgba(0,34,0,1) 51%, rgba(0,102,0,1) 100%);
+	color: white;
+}
+
+a.green-gradient:link, a.red-gradient:visited {
+	text-decoration: none;
+}
+
+a.green-gradient:hover {
+	background: linear-gradient(180deg, rgba(0,170,0,1) 0%, rgba(0,102,0,1) 49%, rgba(0,68,0,1) 51%, rgba(0,136,0,1) 100%);
+	text-decoration: none;
 }
