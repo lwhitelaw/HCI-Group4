@@ -9,6 +9,11 @@
 				var uidata = getUIObject();
 				uidata.widgettype = undefined;
 				setUIObject(uidata);
+				
+				// bind listeners
+				document.getElementById("timeropt").addEventListener("click",clickedTimer);
+				document.getElementById("worldclockopt").addEventListener("click",clickedWorldClock);
+				document.getElementById("scheduleopt").addEventListener("click",clickedSchedule);
 			}
 			
 			// stores data for the widget config to determine what to display later
@@ -30,10 +35,8 @@
 				uidata.widgettype = "schedule";
 				setUIObject(uidata);
 			}
-			// bind listeners
-			document.getElementById("timeropt").addEventListener("click",clickedTimer);
-			document.getElementById("worldclockopt").addEventListener("click",clickedWorldClock);
-			document.getElementById("scheduleopt").addEventListener("click",clickedSchedule);
+			// init
+			setTimeout(init);
 		</script>
 	</head>
 	<body>
