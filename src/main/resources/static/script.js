@@ -19,5 +19,3 @@ function setUIObject(obj) {
 	if (obj === null) return;
 	sessionStorage.setItem("uidata",JSON.stringify(obj));
 }
-
-setTimeout(init);
