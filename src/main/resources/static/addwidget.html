@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<title>Clock</title>
+		<script>
+			function init() {
+				var elem = document.getElementById("test");
+				elem.addEventListener("click",onClick);
+			
+				function onClick() {
+					window.alert("hello");
+				}
+			}
+			setTimeout(init);
+		</script>
+	</head>
+	<body>
+		<!-- Header bar -->
+		<header class="header neutral-gradient">
+			<span class="header-font">ADD WIDGET</span>
+			<span class="header-font right"><a class="blank" href="index.html">&#x2302;</a></span>
+			<span class="header-font right"><a class="blank" href="index.html">&#x2B05;</a></span>
+		</header>
+		
+		<!-- Centre body area -->
+		<!-- Temporary item types -->
+		<div>
+			<ul>
+				<li><a class="blank" href="itemconfig.html">Event ></a></li>
+				<li><a class="blank" href="itemconfig.html">Meeting ></a></li>
+				<li><a class="blank" href="itemconfig.html">Lunch ></a></li>
+				<li><a class="blank" href="itemconfig.html">Dinner ></a></li>
+				<li><a class="blank" href="itemconfig.html">Deadline ></a></li>
+				<li><a class="blank" href="itemconfig.html">Game ></a></li>
+				<li><a class="blank" href="itemconfig.html">Bus ></a></li>
+				<li><a class="blank" href="itemconfig.html">Train ></a></li>
+				<li><a class="blank" href="itemconfig.html">Flight ></a></li>
+			</ul>
+		</div>
+		<!-- Footer bar -->
+		<footer class="footer neutral-gradient">
+			<!-- nonbreaking space stops browser from removing footer -->
+			<a class="red-gradient header-font" href="index.html">&#x1F5D9; Cancel</a>
+		</footer>
+	</body>
+</html>
