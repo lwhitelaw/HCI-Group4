@@ -11,24 +11,26 @@ body {
 }
 
 /* Main Clock */
+.MainClockModule {
+	Width:200px;
+	
+}
+
 .MainClockTitle {
 	position: relative;
-	left: 13.5%;
+	left: 40%;
+	
 }
 
 .date {
 	position: relative;
-	left: 13%;
+	left: 35%
 	
 }
 
 .digitalClock {
 	position: relative;
-
-	left: 12.5%;
-	vertical-align: top;
-	
-	
+	left: 30%
 }
 
 .analogClock {
@@ -37,7 +39,6 @@ body {
   width: 7rem;
   height: 7rem;
   position: relative;
-  right: 35%;
   padding: 1rem;
   border: 7px solid #16344f;
   box-shadow: -4px -4px 10px rgba(67,67,67,0.5),
