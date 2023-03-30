@@ -11,6 +11,11 @@ body {
 }
 
 /* Main Clock */
+.MainClockTitle {
+	position: relative;
+	left: 13.5%;
+}
+
 .date {
 	position: relative;
 	left: 13%;
