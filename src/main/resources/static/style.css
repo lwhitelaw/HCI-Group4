@@ -13,29 +13,34 @@ body {
 /* Main Clock */
 .date {
 	position: relative;
+	left: 13%;
 	
 }
 
 .digitalClock {
-	position: absolute;
+	position: relative;
+
+	left: 12.5%;
+	vertical-align: top;
 	
 	
 }
 
 .analogClock {
-    background: #2d5171;
+
+  background: #2d5171;
   width: 7rem;
   height: 7rem;
   position: relative;
-  float: left;
-  padding: 2rem;
+  right: 35%;
+  padding: 1rem;
   border: 7px solid #16344f;
   box-shadow: -4px -4px 10px rgba(67,67,67,0.5),
                 inset 4px 4px 10px rgba(0,0,0,0.5),
                 inset -4px -4px 10px rgba(67,67,67,0.5),
                 4px 4px 10px rgba(0,0,0,0.3);
-  border-radius: 50%;
-  margin: 50px auto;
+  border-radius: 75%;
+  margin: 10px auto;
  
 }
 

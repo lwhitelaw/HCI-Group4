@@ -19,9 +19,6 @@ function getUIObject() {
 function setUIObject(obj) {
 	if (obj === null) return;
 	sessionStorage.setItem("uidata",JSON.stringify(obj));
-<<<<<<< Updated upstream
-}
-=======
 }
 
 function currentTime() {
@@ -45,31 +42,30 @@ function currentTime() {
     
    let time = hh + ":" + mm + ":" + ss + " " + session;
 
-  document.getElementById("clock").innerText = time; 
+  document.getElementById("digitalClock").innerText = time; 
   let t = setTimeout(function(){ currentTime() }, 1000);
 }
 
 function currentDate(){
 	var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth()+1;
+var day = today.getDate();
+var month = today.getMonth()+1;
 var months = [ "January", "February", "March", "April", "May", "June",
 "July", "August", "September", "October", "November", "December" ];
 
-var yyyy = today.getFullYear();
-if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm}
+if(day<10){day='0'+day} if(month<10){month='0'+month}
 
-mm = months[mm - 1];
-
-
-today = mm + ', '+ dd;
+month = months[month - 1];
 
 
-document.getElementById("date").innerText = today;
+today = month + ', '+ day;
+
+
+document.getElementById("todayDate").innerText = today;
 }
 
 currentDate();
 currentTime();
 
 setTimeout(init);
->>>>>>> Stashed changes
+
