@@ -30,7 +30,28 @@
 			
 			// commits data to client storage on accept being clicked
 			function clickedAccept() {
+				var uidata = getUIObject();
 				var permdata = getDataObject();
+				var name = document.getElementById("name").value;
+				var time = document.getElementById("time").value;
+				// write out schedule object
+				if (permdata.widgetlist === undefined) {
+					permdata.widgetlist = [];
+				}
+				// make obj
+				var obj = {};
+				obj.name = name;
+				obj.monday = uidata.addschedule.monday;
+				obj.tuesday = uidata.addschedule.tuesday;
+				obj.wednesday = uidata.addschedule.wednesday;
+				obj.thursday = uidata.addschedule.thursday;
+				obj.friday = uidata.addschedule.friday;
+				obj.saturday = uidata.addschedule.saturday;
+				obj.sunday = uidata.addschedule.sunday;
+				obj.time = time;
+				// push
+				permdata.widgetlist.push(obj);
+				setDataObject(permdata);
 			}
 			
 			// button toggling
@@ -76,8 +97,11 @@
 			<button id="friday" class="grey-gradient large">F</button>
 			<button id="saturday" class="grey-gradient large">SA</button>
 			<button id="sunday" class="grey-gradient large">SU</button>
-			<input class="grey-gradient" type="time">
+			<input id="time" class="grey-gradient" type="time">
 			<h1>Event type specific</h1>
+			
+			<p>Event name</p>
+			<input id="name" type="text"></input>
 		</div>
 		<!-- Footer bar -->
 		<footer class="footer neutral-gradient">
