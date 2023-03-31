@@ -21,6 +21,8 @@ function setUIObject(obj) {
 	sessionStorage.setItem("uidata",JSON.stringify(obj));
 }
 
+/* index.html */
+
 function currentTime() {
   let date = new Date(); 
   let hh = date.getHours();
@@ -28,7 +30,7 @@ function currentTime() {
   let ss = date.getSeconds();
   let session = "AM";
 
-  if(hh === 0){
+  if(hh === 0) {
       hh = 12;
   }
   if(hh > 12){
@@ -42,30 +44,24 @@ function currentTime() {
     
    let time = hh + ":" + mm + ":" + ss + " " + session;
 
-  document.getElementById("digitalClock").innerText = time; 
-  let t = setTimeout(function(){ currentTime() }, 1000);
+   document.getElementById("digitalClock").innerText = time; 
+   let t = setTimeout(function(){ currentTime() }, 1000);
 }
 
 function currentDate(){
 	var today = new Date();
-var day = today.getDate();
-var month = today.getMonth()+1;
-var months = [ "January", "February", "March", "April", "May", "June",
-"July", "August", "September", "October", "November", "December" ];
-
-if(day<10){day='0'+day} if(month<10){month='0'+month}
-
-month = months[month - 1];
-
-
-today = month + ', '+ day;
-
-
-document.getElementById("todayDate").innerText = today;
+	var day = today.getDate();
+	var month = today.getMonth()+1;
+	var months = [ "January", "February", "March", "April", "May", "June",
+	"July", "August", "September", "October", "November", "December" ];
+	
+	if(day<10){day='0'+day} if(month<10){month='0'+month}
+	
+	month = months[month - 1];
+	
+	
+	today = month + ', '+ day;
+	
+	
+	document.getElementById("todayDate").innerText = today;
 }
-
-currentDate();
-currentTime();
-
-setTimeout(init);
-
