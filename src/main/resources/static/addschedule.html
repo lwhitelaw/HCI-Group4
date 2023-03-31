@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<script src="script.js"></script>
+		<title>Clock</title>
+		<script>
+			function init() {
+				// setup ui state
+				var uidata = getUIObject();
+				uidata.addschedule = {};
+				uidata.addschedule.monday = false;
+				uidata.addschedule.tuesday = false;
+				uidata.addschedule.wednesday = false;
+				uidata.addschedule.thursday = false;
+				uidata.addschedule.friday = false;
+				uidata.addschedule.saturday = false;
+				uidata.addschedule.sunday = false;
+				setUIObject(uidata);
+				// bind listeners
+				document.getElementById("accept").addEventListener("click",clickedAccept);
+				document.getElementById("monday").addEventListener("click",() => toggleButton("monday"));
+				document.getElementById("tuesday").addEventListener("click",() => toggleButton("tuesday"));
+				document.getElementById("wednesday").addEventListener("click",() => toggleButton("wednesday"));
+				document.getElementById("thursday").addEventListener("click",() => toggleButton("thursday"));
+				document.getElementById("friday").addEventListener("click",() => toggleButton("friday"));
+				document.getElementById("saturday").addEventListener("click",() => toggleButton("saturday"));
+				document.getElementById("sunday").addEventListener("click",() => toggleButton("sunday"));
+			}
+			
+			// commits data to client storage on accept being clicked
+			function clickedAccept() {
+				var uidata = getUIObject();
+				var permdata = getDataObject();
+				var name = document.getElementById("name").value;
+				var time = document.getElementById("time").value;
+				// write out schedule object
+				if (permdata.widgetlist === undefined) {
+					permdata.widgetlist = [];
+				}
+				// make obj
+				var obj = {};
+				obj.type = "recurring";
+				obj.name = name;
+				obj.monday = uidata.addschedule.monday;
+				obj.tuesday = uidata.addschedule.tuesday;
+				obj.wednesday = uidata.addschedule.wednesday;
+				obj.thursday = uidata.addschedule.thursday;
+				obj.friday = uidata.addschedule.friday;
+				obj.saturday = uidata.addschedule.saturday;
+				obj.sunday = uidata.addschedule.sunday;
+				obj.time = time;
+				// push
+				permdata.widgetlist.push(obj);
+				setDataObject(permdata);
+			}
+			
+			// button toggling
+			function toggleButton(name) {
+				var uidata = getUIObject();
+				var elem = document.getElementById(name);
+				var classes = elem.classList;
+				var off = "grey-gradient";
+				var on = "green-gradient";
+				if (classes.contains(off)) {
+					classes.remove(off);
+					classes.add(on);
+					uidata.addschedule[name] = true;
+				} else if (classes.contains(on)) {
+					classes.remove(on);
+					classes.add(off);
+					uidata.addschedule[name] = false;
+				}
+				setUIObject(uidata);
+			}
+			
+			// init
+			setTimeout(init);
+		</script>
+	</head>
+	<body>
+		<!-- Header bar -->
+		<header class="header neutral-gradient">
+			<span class="header-font">RECURRING SCHEDULE</span>
+			<span class="header-font right"><a class="blank" href="index.html">&#x2302;</a></span>
+			<span class="header-font right"><a class="blank" href="addwidget.html">&#x2B05;</a></span>
+		</header>
+		
+		<!-- Centre body area -->
+		<!-- Item controls -->
+		<div>
+			<h1>Time</h1>
+			<!-- This might have to be restyled -->
+			<button id="monday" class="grey-gradient large">M</button>
+			<button id="tuesday" class="grey-gradient large">T</button>
+			<button id="wednesday" class="grey-gradient large">W</button>
+			<button id="thursday" class="grey-gradient large">R</button>
+			<button id="friday" class="grey-gradient large">F</button>
+			<button id="saturday" class="grey-gradient large">SA</button>
+			<button id="sunday" class="grey-gradient large">SU</button>
+			<input id="time" class="grey-gradient" type="time">
+			<h1>Event type specific</h1>
+			
+			<p>Event name</p>
+			<input id="name" type="text"></input>
+		</div>
+		<!-- Footer bar -->
+		<footer class="footer neutral-gradient">
+			<!-- nonbreaking space stops browser from removing footer -->
+			<a class="red-gradient header-font" href="index.html">&#x1F5D9; Cancel</a>
+			<a id="accept" class="green-gradient header-font" href="index.html">&#x02713; Accept</a>
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<script src="script.js"></script>
+		<title>Clock</title>
+		<script>
+			function init() {
+				var uidata = getUIObject();
+				uidata.widgettype = undefined;
+				setUIObject(uidata);
+				
+				// bind listeners
+				document.getElementById("timeropt").addEventListener("click",clickedTimer);
+				document.getElementById("worldclockopt").addEventListener("click",clickedWorldClock);
+				document.getElementById("scheduleopt").addEventListener("click",clickedSchedule);
+			}
+			
+			// stores data for the widget config to determine what to display later
+			// in a perfect world, these would not be hardcoded
+			function clickedTimer() {
+				var uidata = getUIObject();
+				uidata.widgettype = "timer";
+				setUIObject(uidata);
+			}
+			
+			function clickedWorldClock() {
+				var uidata = getUIObject();
+				uidata.widgettype = "worldclock";
+				setUIObject(uidata);
+			}
+			
+			function clickedSchedule() {
+				var uidata = getUIObject();
+				uidata.widgettype = "schedule";
+				setUIObject(uidata);
+			}
+			// init
+			setTimeout(init);
+		</script>
+	</head>
+	<body>
+		<!-- Header bar -->
+		<header class="header neutral-gradient">
+			<span class="header-font">ADD WIDGET</span>
+			<span class="header-font right"><a class="blank" href="index.html">&#x2302;</a></span>
+			<span class="header-font right"><a class="blank" href="index.html">&#x2B05;</a></span>
+		</header>
+		
+		<!-- Centre body area -->
+		<!-- Widget item types -->
+		<div>
+			<ul>
+				<li><a id="timeropt" class="blank" href="itemconfig.html">Timer ></a></li>
+				<li><a id="worldclockopt" class="blank" href="itemconfig.html">World Clock ></a></li>
+				<li><a id="scheduleopt" class="blank" href="addschedule.html">Schedule ></a></li>
+			</ul>
+		</div>
+		<!-- Footer bar -->
+		<footer class="footer neutral-gradient">
+			<!-- nonbreaking space stops browser from removing footer -->
+			<a class="red-gradient header-font" href="index.html">&#x1F5D9; Cancel</a>
+		</footer>
+	</body>
+</html>

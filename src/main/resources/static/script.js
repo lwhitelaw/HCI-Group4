@@ -23,6 +23,56 @@ function setUIObject(obj) {
 
 /* index.html */
 
+function injectWidgets() {
+	var container = document.getElementById("widgetcontainer");
+	var objdata = getDataObject();
+	
+	// no widgetlist, so do nothing here
+	if (objdata.widgetlist === undefined) return;
+	
+	// process widgets
+	var id = 0;
+	for (widget of objdata.widgetlist) {
+		if (widget.type === "recurring") {
+			// recurring schedule widget
+			var div = document.createElement("div");
+			div.id = "widget" + id;
+			div.innerHTML = generateRecurringHTML(widget,id);
+			// make script
+			var script = document.createElement("script");
+			script.text = generateRecurringScript(widget,id);
+			
+			container.appendChild(div);
+			container.appendChild(script);
+		}
+		id++;
+	}
+}
+
+/* Recurring schedule */
+
+function generateRecurringHTML(widget,id) {
+	return `
+		<p id="widget${id}"></p>
+	`;
+}
+
+function generateRecurringScript(widget,id) {
+	return `
+		function widget${id}init() {
+			function widget${id}run() {
+				var elem = document.getElementById("widget${id}");
+				var str = "${widget.name} - ";
+				elem.innerHTML = "${widget.name} - ${widget.time}";
+			}
+			setInterval(widget${id}run, 1000);
+		}
+		setTimeout(widget${id}init);
+	`;
+}
+
+/* end recurring schedule */
+
 function currentTime() {
   let date = new Date(); 
   let hh = date.getHours();

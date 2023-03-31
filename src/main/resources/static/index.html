@@ -31,6 +31,8 @@
 				setDate();
 				currentDate();
 				currentTime();
+				
+				injectWidgets();
 			}
  			// call init
  			setTimeout(init);
@@ -82,7 +84,9 @@
 					</td>
 					<!-- Widgets -->
 					<td>
-						<p>Widgets here</p>
+						<div id="widgetcontainer">
+							<!-- Widget displays will be injected here on load -->
+						</div>
 					</td>
 				</tr>
 			</table>
@@ -104,7 +108,7 @@
 		<footer class="footer neutral-gradient">
 			<!-- nonbreaking space stops browser from removing footer -->
 			<a class="grey-gradient header-font" href="additem.html">+ Add event</a>
-			<a class="grey-gradient header-font" href="#">+ Add widget</a>
+			<a class="grey-gradient header-font" href="addwidget.html">+ Add widget</a>
 <!-- 			<a class="green-gradient header-font" href="#">Button</a> -->
 <!-- 			<a class="red-gradient header-font" href="#">Button</a> -->
 <!-- 			<a class="green-gradient header-font" href="#">&#x2B05; &#x2302; &#x232B; Back</a> -->
