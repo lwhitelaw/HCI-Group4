@@ -5,6 +5,34 @@
 		<script type="text/javascript" src="script.js"></script>
 		<link type="image/png" sizes="16x16" rel="icon" href="icons8-alarm-clock-16.png">
 		<title>Clock</title>
+		<!-- Script for Main Analog Clock  -->
+		<script>
+			function init() {
+				const secondHand = document.querySelector('.second-hand');
+				const minsHand = document.querySelector('.min-hand');
+				const hourHand = document.querySelector('.hour-hand');
+	 
+	 			function setDate() {
+		  			const now = new Date();
+		 
+		  			const seconds = now.getSeconds();
+		  			const secondsDegrees = ((seconds / 60) * 360) + 90;
+		  			secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+		 
+		  			const mins = now.getMinutes();
+		  			const minsDegrees = ((mins / 60) * 360) + ((seconds/60)*6) + 90;
+		  			minsHand.style.transform = `rotate(${minsDegrees}deg)`;
+		 
+		  			const hour = now.getHours();
+		  			const hourDegrees = ((hour / 12) * 360) + ((mins/60)*30) + 90;
+		  			hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+				}
+				setInterval(setDate, 1000);
+				setDate();
+			}
+ 			// call init
+ 			setTimeout(init);
+		</script>
 	</head>
 	<body>
 		<!-- Header bar -->
@@ -24,28 +52,29 @@
 					<td>
 						<table class="Clocks">
 						<tr>
-						<td>
-						<div class="MainClockModule" id="MainClockModule">
-						<h3 class="MainClockTitle" id = "MainClockTitle">Local</h3>
-						<div id="todayDate" class="date" onload="currentDate()"></div>
-						<div class="analogClock">
- 						<div class="outer-clock-face">
-						<div class="marking marking-one"></div>
-						<div class="marking marking-two"></div>
-						<div class="marking marking-three"></div>
-						<div class="marking marking-four"></div>
-						<div class="inner-clock-face">
-						<div class="hand hour-hand"></div>
-					    <div class="hand min-hand"></div>
-					    <div class="hand second-hand"></div>
-          				</div></div></div>
-						<div  id="digitalClock" class="digitalClock" onload="currentTime()"></div>
-						</div>
-						</td>
-						<td>
-						<p>another clock</p>
-						</td>
-						
+							<td>
+								<div class="MainClockModule" id="MainClockModule">
+									<h3 class="MainClockTitle" id = "MainClockTitle">Local</h3>
+									<div id="todayDate" class="date" onload="currentDate()"></div>
+									<div class="analogClock">
+			 							<div class="outer-clock-face">
+											<div class="marking marking-one"></div>
+											<div class="marking marking-two"></div>
+											<div class="marking marking-three"></div>
+											<div class="marking marking-four"></div>
+											<div class="inner-clock-face">
+												<div class="hand hour-hand"></div>
+											    <div class="hand min-hand"></div>
+											    <div class="hand second-hand"></div>
+		          							</div>
+		          						</div>
+		          					</div>
+								<div id="digitalClock" class="digitalClock" onload="currentTime()"></div>
+								</div>
+							</td>
+							<td>
+								<p>another clock</p>
+							</td>
 						</tr>
 						</table>
 					</td>
@@ -78,31 +107,5 @@
 <!-- 			<a class="red-gradient header-font" href="#">Button</a> -->
 <!-- 			<a class="green-gradient header-font" href="#">&#x2B05; &#x2302; &#x232B; Back</a> -->
 		</footer>
-		<script type="text/javascript" src="script.js"></script>
-		<!-- Script for Main Analog Clock  -->
-		<script id="analogClockScript">
-    		const secondHand = document.querySelector('.second-hand');
-			const minsHand = document.querySelector('.min-hand');
-			const hourHand = document.querySelector('.hour-hand');
- 
- 			function setDate() {
-  			const now = new Date();
- 
-  			const seconds = now.getSeconds();
-  			const secondsDegrees = ((seconds / 60) * 360) + 90;
-  			secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
- 
-  			const mins = now.getMinutes();
-  			const minsDegrees = ((mins / 60) * 360) + ((seconds/60)*6) + 90;
-  			minsHand.style.transform = `rotate(${minsDegrees}deg)`;
- 
-  			const hour = now.getHours();
-  			const hourDegrees = ((hour / 12) * 360) + ((mins/60)*30) + 90;
-  			hourHand.style.transform = `rotate(${hourDegrees}deg)`;
-			}
- 
-			setInterval(setDate, 1000);
-			setDate();
-		</script>
 	</body>
 </html>
