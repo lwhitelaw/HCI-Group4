@@ -31,6 +31,8 @@
 				setDate();
 				currentDate();
 				currentTime();
+				
+				injectWidgets();
 			}
  			// call init
  			setTimeout(init);
@@ -82,7 +84,9 @@
 					</td>
 					<!-- Widgets -->
 					<td>
-						<p>Widgets here</p>
+						<div id="widgetcontainer">
+							<!-- Widget displays will be injected here on load -->
+						</div>
 					</td>
 				</tr>
 			</table>
