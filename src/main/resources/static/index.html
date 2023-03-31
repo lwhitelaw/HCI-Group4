@@ -29,6 +29,8 @@
 				}
 				setInterval(setDate, 1000);
 				setDate();
+				currentDate();
+				currentTime();
 			}
  			// call init
  			setTimeout(init);
@@ -55,7 +57,7 @@
 							<td>
 								<div class="MainClockModule" id="MainClockModule">
 									<h3 class="MainClockTitle" id = "MainClockTitle">Local</h3>
-									<div id="todayDate" class="date" onload="currentDate()"></div>
+									<div id="todayDate" class="date"></div>
 									<div class="analogClock">
 			 							<div class="outer-clock-face">
 											<div class="marking marking-one"></div>
@@ -69,7 +71,7 @@
 		          							</div>
 		          						</div>
 		          					</div>
-								<div id="digitalClock" class="digitalClock" onload="currentTime()"></div>
+								<div id="digitalClock" class="digitalClock"></div>
 								</div>
 							</td>
 							<td>
