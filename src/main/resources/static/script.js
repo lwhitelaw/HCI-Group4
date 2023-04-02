@@ -49,6 +49,26 @@ function injectWidgets() {
 	}
 }
 
+function injectEvents() {
+	var container = document.getElementById("upcoming");
+	var objdata = getDataObject();
+	
+	// no eventlist, so do nothing here
+	if (objdata.eventlist === undefined) return;
+	
+	// process events
+	for (event of objdata.eventlist) {
+		var li = document.createElement("li");
+		var str = event.name;
+		if (event.extrainfo !== undefined && event.extrainfo.length > 0) {
+			str += "(" + event.extrainfo + ")";
+		}
+		str += " - " + numToDay(event.day) + " " + event.time;
+		li.innerHTML = str;
+		container.appendChild(li);
+	}
+}
+
 function numToDay(num) {
 	switch (num) {
 		case 0: return "Sunday";

@@ -33,6 +33,7 @@
 				currentTime();
 				
 				injectWidgets();
+				injectEvents();
 			}
  			// call init
  			setTimeout(init);
@@ -94,14 +95,8 @@
 		<!-- Upcoming area -->
 		<div>
 			<h1><a href="upcoming.html" class="blank">UPCOMING</a></h1>
-			<ul>
-				<li>Item</li>
-				<li>Item</li>
-				<li>Item</li>
-				<li>Item</li>
-				<li>Item</li>
-				<li>Item</li>
-				<li>Item</li>
+			<ul id="upcoming">
+				<!-- Temporary events will be injected here on load -->
 			</ul>
 		</div>
 		<!-- Footer bar -->
