@@ -4,6 +4,36 @@
 		<link rel="stylesheet" href="style.css">
 		<script src="script.js"></script>
 		<title>Clock</title>
+		<script>
+			function init() {
+				// setup ui state
+				var uidata = getUIObject();
+				uidata.itemconfig = {};
+				uidata.itemconfig.eventname = "Event";
+				setUIObject(uidata);
+				// bind listeners
+				document.getElementById("event").addEventListener("click",clickedOption);
+				document.getElementById("meeting").addEventListener("click",clickedOption);
+				document.getElementById("lunch").addEventListener("click",clickedOption);
+				document.getElementById("dinner").addEventListener("click",clickedOption);
+				document.getElementById("deadline").addEventListener("click",clickedOption);
+				document.getElementById("game").addEventListener("click",clickedOption);
+				document.getElementById("bus").addEventListener("click",clickedOption);
+				document.getElementById("train").addEventListener("click",clickedOption);
+				document.getElementById("flight").addEventListener("click",clickedOption);
+			}
+			
+			// handles UI setup for next page
+			function clickedOption(e) {
+				var uidata = getUIObject();
+				var elem = e.target;
+				uidata.itemconfig.eventname = elem.getAttribute("clockmeta");
+				setUIObject(uidata);
+			}
+			
+			// init
+			setTimeout(init);
+		</script>
 	</head>
 	<body>
 		<!-- Header bar -->
@@ -17,15 +47,15 @@
 		<!-- Temporary item types -->
 		<div>
 			<ul>
-				<li><a class="blank" href="itemconfig.html">Event ></a></li>
-				<li><a class="blank" href="itemconfig.html">Meeting ></a></li>
-				<li><a class="blank" href="itemconfig.html">Lunch ></a></li>
-				<li><a class="blank" href="itemconfig.html">Dinner ></a></li>
-				<li><a class="blank" href="itemconfig.html">Deadline ></a></li>
-				<li><a class="blank" href="itemconfig.html">Game ></a></li>
-				<li><a class="blank" href="itemconfig.html">Bus ></a></li>
-				<li><a class="blank" href="itemconfig.html">Train ></a></li>
-				<li><a class="blank" href="itemconfig.html">Flight ></a></li>
+				<li><a id="event" clockmeta="Event" class="blank" href="itemconfig.html">Event ></a></li>
+				<li><a id="meeting" clockmeta="Meeting" class="blank" href="itemconfig.html">Meeting ></a></li>
+				<li><a id="lunch" clockmeta="Lunch" class="blank" href="itemconfig.html">Lunch ></a></li>
+				<li><a id="dinner" clockmeta="Dinner" class="blank" href="itemconfig.html">Dinner ></a></li>
+				<li><a id="deadline" clockmeta="Deadline" class="blank" href="itemconfig.html">Deadline ></a></li>
+				<li><a id="game" clockmeta="Game" class="blank" href="itemconfig.html">Game ></a></li>
+				<li><a id="bus" clockmeta="Bus" class="blank" href="itemconfig.html">Bus ></a></li>
+				<li><a id="train" clockmeta="Train" class="blank" href="itemconfig.html">Train ></a></li>
+				<li><a id="flight" clockmeta="Flight" class="blank" href="itemconfig.html">Flight ></a></li>
 			</ul>
 		</div>
 		<!-- Footer bar -->
