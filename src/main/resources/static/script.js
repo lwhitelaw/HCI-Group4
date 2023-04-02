@@ -49,6 +49,32 @@ function injectWidgets() {
 	}
 }
 
+function numToDay(num) {
+	switch (num) {
+		case 0: return "Sunday";
+		case 1: return "Monday";
+		case 2: return "Tuesday";
+		case 3: return "Wednesday";
+		case 4: return "Thursday";
+		case 5: return "Friday";
+		case 6: return "Saturday";
+		default: return "Unknown";
+	}
+}
+
+function dayToNum(day) {
+	switch (day.toLowerCase()) {
+		case "sunday": return 0;
+		case "monday": return 1;
+		case "tuesday": return 2;
+		case "wednesday": return 3;
+		case "thursday": return 4;
+		case "friday": return 5;
+		case "saturday": return 6;
+		default: return -1;
+	}
+}
+
 /* Recurring schedule */
 
 function generateRecurringHTML(widget,id) {
