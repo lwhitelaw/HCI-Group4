@@ -69,6 +69,44 @@ function injectEvents() {
 	}
 }
 
+/* upcoming.html */
+
+function injectEventsUpcoming() {
+	var container = document.getElementById("upcoming");
+	var objdata = getDataObject();
+	
+	// no eventlist, so do nothing here
+	if (objdata.eventlist === undefined) return;
+	
+	// process events
+	var index = 0;
+	for (event of objdata.eventlist) {
+		var li = document.createElement("li");
+		var spanstr = `
+			<span class="right">
+				<!-- <a class="grey-gradient" href="#">Edit</a> -->
+				<a id="delete${index}" bindindex=${index} class="red-gradient" href="upcoming.html">Delete</a>
+			</span>
+		`;
+		var str = event.name;
+		if (event.extrainfo !== undefined && event.extrainfo.length > 0) {
+			str += "(" + event.extrainfo + ")";
+		}
+		str += " - " + numToDay(event.day) + " " + event.time + spanstr;
+		li.innerHTML = str;
+		container.appendChild(li);
+		index++;
+	}
+	var idlength = index;
+	// bind listeners
+	for (var i = 0; i < idlength; i++) {
+		var capture = i; // to avert a JavaScript quirk in loops
+		document.getElementById("delete" + capture).addEventListener("click",() => {
+			deleteItem(capture);
+		});
+	}
+}
+
 function numToDay(num) {
 	switch (num) {
 		case 0: return "Sunday";

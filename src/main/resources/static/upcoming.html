@@ -4,6 +4,22 @@
 		<link rel="stylesheet" href="style.css">
 		<script src="script.js"></script>
 		<title>Clock</title>
+		<script>
+			function init() {
+				injectEventsUpcoming();
+			}
+			
+			function deleteItem(index) {
+				console.log(index);
+				var objdata = getDataObject();
+				if (objdata.eventlist !== undefined) {
+					objdata.eventlist.splice(index,1);
+					setDataObject(objdata);
+				}
+			}
+ 			// call init
+ 			setTimeout(init);
+		</script>
 	</head>
 	<body>
 		<!-- Header bar -->
@@ -15,50 +31,18 @@
 		
 		<!-- Centre body area -->
 		<!-- Dedicated upcoming list, this would probably be generated -->
+		<!-- Edit option has been removed for simplification's sake -->
 		<div>
-			<ul>
+			<ul id="upcoming">
+				<!-- Items injected here -->
+				<!--
 				<li>Item
 					<span class="right">
 						<a class="grey-gradient" href="#">Edit</a>
 						<a class="red-gradient" href="#">Delete</a>
 					</span>
 				</li>
-				<li>Item
-					<span class="right">
-						<a class="grey-gradient" href="#">Edit</a>
-						<a class="red-gradient" href="#">Delete</a>
-					</span>
-				</li>
-				<li>Item
-					<span class="right">
-						<a class="grey-gradient" href="#">Edit</a>
-						<a class="red-gradient" href="#">Delete</a>
-					</span>
-				</li>
-				<li>Item
-					<span class="right">
-						<a class="grey-gradient" href="#">Edit</a>
-						<a class="red-gradient" href="#">Delete</a>
-					</span>
-				</li>
-				<li>Item
-					<span class="right">
-						<a class="grey-gradient" href="#">Edit</a>
-						<a class="red-gradient" href="#">Delete</a>
-					</span>
-				</li>
-				<li>Item
-					<span class="right">
-						<a class="grey-gradient" href="#">Edit</a>
-						<a class="red-gradient" href="#">Delete</a>
-					</span>
-				</li>
-				<li>Item
-					<span class="right">
-						<a class="grey-gradient" href="#">Edit</a>
-						<a class="red-gradient" href="#">Delete</a>
-					</span>
-				</li>
+				-->
 			</ul>
 		</div>
 		<!-- Footer bar -->
