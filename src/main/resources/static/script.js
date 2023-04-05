@@ -117,12 +117,15 @@ function currentDate(){
 }
 
 function currentTimeWidget() {
-  let date = new Date(); 
-  let hh = date.getHours() + timeZoneValue;
-  let mm = date.getMinutes();
-  let ss = date.getSeconds();
+  let date = new Date();
+  let timeZoneValue = document.getElementById("timeZoneSelected").value;
+  date.getUTCHours();
+  date.setUTCHours(timeZoneValue);
+  let hh = date.getUTCHours();
+  let mm = date.getUTCMinutes();
+  let ss = date.getUTCSeconds();
   let session = "AM";
-  var timeZoneValue = document.getElementById("timeZone").value;
+  
 
   if(hh === 0) {
       hh = 12;

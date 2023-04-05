@@ -9,30 +9,32 @@
 			
 			//Bind Event Listener
 			//document.getElementById("accept").addEventListener("click",clickedAccept);
-			document.getElementById("timeZoneSubmit").addEventListener("submit", init);
+			document.getElementById("timeZoneSelected").addEventListener("input", init);
 				
 			const secondHand = document.querySelector('.second-hand');
 			const minsHand = document.querySelector('.min-hand');
 			const hourHand = document.querySelector('.hour-hand');
-			var timeZoneValue = document.getElementById("timeZoneSubmit").value;
+			var timeZoneValue = document.getElementById("timeZoneSelected").value;
 
 			function setDate() {
 	  			const now = new Date();
 	 
-	  			const seconds = now.getSeconds();
+	  			const seconds = now.getUTCSeconds();
 	  			const secondsDegrees = ((seconds / 60) * 360) + 90;
 	  			secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
 	 
-	  			const mins = now.getMinutes();
+	  			const mins = now.getUTCMinutes();
 	  			const minsDegrees = ((mins / 60) * 360) + ((seconds/60)*6) + 90;
 	  			minsHand.style.transform = `rotate(${minsDegrees}deg)`;
-	 
-	  			const hour = now.getHours() + timeZoneValue;
+	 			
+	  			now.getUTCHours();
+	  		 	now.setUTCHours(timeZoneValue);
+	  			const hour = now.getUTCHours();
 	  			const hourDegrees = ((hour / 12) * 360) + ((mins/60)*30) + 90;
 	  			hourHand.style.transform = `rotate(${hourDegrees}deg)`;
 				}
 			setDate();
-			setInterval(setDate, 1000);
+			setInterval(setDate, 10000);
 			currentTimeWidget();
 			}
 			
@@ -60,38 +62,37 @@
 		<!-- Centre body area -->
 		<!-- Item controls -->
 		<div>
-			<h1>TimeZone</h1>
+			<h1 class="TimeZoneLabel">TimeZone</h1>
 			<form action="" >
-  			<label for="timeZone">Choose a TimeZone:</label>
-  			<select id="timeZone" name="timeZone">
-    		<option value="0">UTC</option>
-    		<option value="1">UTC  +1:00 </option>
-    		<option value="2">UTC  +2:00 </option>
-    		<option value="3">UTC  +3:00 </option>
-    		<option value="4">UTC  +4:00 </option>
-    		<option value="5">UTC  +5:00 </option>
-    		<option value="6">UTC  +6:00 </option>
-    		<option value="7">UTC  +7:00 </option>
-    		<option value="8">UTC  +8:00 </option>
-    		<option value="9">UTC  +9:00 </option>
-    		<option value="10">UTC  +10:00 </option>
-    		<option value="11">UTC  +11:00 </option>
-    		<option value="12">UTC  +12:00 </option>
-    		<option value="13">UTC  -11:00</option>
-    		<option value="14">UTC  -10:00</option>
-    		<option value="15">UTC  -9:00</option>
-    		<option value="16">UTC  -8:00</option>
-    		<option value="17">UTC  -7:00</option>
-    		<option value="18">UTC  -6:00</option>
-    		<option value="19">UTC  -5:00</option>
-    		<option value="20">UTC  -4:00</option>
-    		<option value="21">UTC  -3:00</option>
-    		<option value="22">UTC  -2:00</option>
-    		<option value="23">UTC  -1:00</option>
+  			<label for="timeZone" Class="chooseTimeZoneLabel">Choose a TimeZone:</label>
+  			<select id="timeZoneSelected" name="timeZone" >
+    		<option value="3" selected>UTC</option>
+    		<option value="4">UTC  +1:00 </option>
+    		<option value="5">UTC  +2:00 </option>
+    		<option value="6">UTC  +3:00 </option>
+    		<option value="7">UTC  +4:00 </option>
+    		<option value="8">UTC  +5:00 </option>
+    		<option value="9">UTC  +6:00 </option>
+    		<option value="10">UTC  +7:00 </option>
+    		<option value="11">UTC  +8:00 </option>
+    		<option value="12">UTC  +9:00 </option>
+    		<option value="13">UTC  +10:00 </option>
+    		<option value="14">UTC  +11:00 </option>
+    		<option value="15">UTC  +12:00 </option>
+    		<option value="16">UTC  -11:00</option>
+    		<option value="17">UTC  -10:00</option>
+    		<option value="18">UTC  -9:00</option>
+    		<option value="19">UTC  -8:00</option>
+    		<option value="20">UTC  -7:00</option>
+    		<option value="21">UTC  -6:00</option>
+    		<option value="22">UTC  -5:00</option>
+    		<option value="23">UTC  -4:00</option>
+    		<option value="0">UTC  -3:00</option>
+    		<option value="1">UTC  -2:00</option>
+    		<option value="2">UTC  -1:00</option>
   			</select>
-  			<input id="timeZoneSubmit" type="submit">
 			</form>
-				<div class="analogClock">
+				<div class="analogClock" style="Float:left;">
 				<div class="outer-clock-face">
 				<div class="marking marking-one"></div>
 				<div class="marking marking-two"></div>
@@ -104,7 +105,7 @@
        					</div>
        					</div>
        					</div>
-				<div id="digitalClockWidget" class="digitalClock"></div>
+				<div id="digitalClockWidget" class="digitalClockWidget" style="Float:left; padding-top:10pt;"></div>
 
 
 
