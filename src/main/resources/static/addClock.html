@@ -14,7 +14,7 @@
 			const secondHand = document.querySelector('.second-hand');
 			const minsHand = document.querySelector('.min-hand');
 			const hourHand = document.querySelector('.hour-hand');
-			var timeZoneValue = document.getElementById("timeZoneSelected").value;
+			const timeZoneValue = document.getElementById("timeZoneSelected").value;
 
 			function setDate() {
 	  			const now = new Date();
@@ -34,8 +34,9 @@
 	  			hourHand.style.transform = `rotate(${hourDegrees}deg)`;
 				}
 			setDate();
-			setInterval(setDate, 10000);
+			setInterval(setDate, 1000);
 			currentTimeWidget();
+			
 			}
 			
 		/*
