@@ -69,6 +69,36 @@ function injectEvents() {
 	}
 }
 
+/* Injection of new clock */
+function injectClocks() {
+	var container = document.getElementById("Clockcontainer");
+	var objdata = getDataObject();
+	
+	//if no clock do nothing
+	if (objdata.clocklist === undefined) return;
+	
+	//process clock
+	var id = 0;
+	for (clock of objdata.clocklist) {
+		if (clock.type === "newClock") {
+			//create clock
+			var td = document.createElement("td");
+			td.id = "clock" + id;
+			td.innerHTML = generateRecurringClock(clock, id);
+			//make script
+			var script = document.createElement("script");
+			script.text = generateRecurringClockScript(clock, id);
+			
+			container.appendChild(td);
+			container.appendChild(script);
+			
+			
+		}
+		id++;
+	}
+	
+}
+
 /* upcoming.html */
 
 function injectEventsUpcoming() {
@@ -133,8 +163,95 @@ function dayToNum(day) {
 	}
 }
 
-/* Recurring schedule */
+/* injection of clock fucntions */
+function generateRecurringClock(clock, id) {
+	
+	return `
+		<h3 class="clock${id}Label" id = "clock${id}Label" style="position: relative;left:15%;padding-bottom:10pt;">${clock.name}</h3>
+		<div id="clock${id}" class="analogClock">
+				<div class="outer-clock-face">
+				<div class="marking marking-one"></div>
+				<div class="marking marking-two"></div>
+				<div class="marking marking-three"></div>
+				<div class="marking marking-four"></div>
+				<div class="inner-clock-face">
+				<div id="clock${id}HHand" class="hand hour-hand"></div>
+				<div id="clock${id}MHand" class="hand min-hand"></div>
+				<div id="clock${id}SHand" class="hand second-hand"></div>
+       					</div>
+       					</div>
+       					</div>
+		<div id="clock${id}digitalClock" class="digitalClockWidget" style="position: relative;left:20%;"></div>
+	`;
+	
+}
 
+function generateRecurringClockScript(clock, id){
+	return `
+		function clock${id}init() {  
+			const secondHand = document.getElementById('clock${id}SHand');
+			const minsHand = document.getElementById('clock${id}MHand');
+			const hourHand = document.getElementById('clock${id}HHand');
+			const timeZoneValue = ${clock.timeZoneValue};
+	
+			function clock${id}setDate() {
+	 			const now = new Date();
+	
+	  			const seconds = now.getUTCSeconds();
+	  			const secondsDegrees = ((seconds / 60) * 360) + 90;
+	  			secondHand.style.transform = "rotate(" + secondsDegrees + "deg)";
+	 
+	  			const mins = now.getUTCMinutes();
+	  			const minsDegrees = ((mins / 60) * 360) + ((seconds/60)*6) + 90;
+	  			minsHand.style.transform = "rotate(" + minsDegrees + "deg)";
+	 			
+	  			now.getUTCHours();
+	  		 	now.setUTCHours(timeZoneValue);
+	  			const hour = now.getUTCHours();
+	  			const hourDegrees = ((hour / 12) * 360) + ((mins/60)*30) + 90;
+	  			hourHand.style.transform = "rotate("+ hourDegrees + "deg)";
+				}
+			function clock${id}Time() {
+			  let date = new Date();
+			  let timeZoneValue = ${clock.timeZoneValue};
+			  date.getUTCHours();
+			  date.setUTCHours(timeZoneValue);
+			  let hh = date.getUTCHours();
+			  let mm = date.getUTCMinutes();
+			  let ss = date.getUTCSeconds();
+			  let session = "AM";
+			  
+			
+			  if(hh === 0) {
+			      hh = 12;
+			  }
+			  if(hh > 12){
+			      hh = hh - 12;
+			      session = "PM";
+			   }
+			
+			   hh = (hh < 10) ? "0" + hh : hh;
+			   mm = (mm < 10) ? "0" + mm : mm;
+			   ss = (ss < 10) ? "0" + ss : ss;
+			    
+			   let time = hh + ":" + mm + ":" + ss + " " + session;
+			
+			   document.getElementById("clock${id}digitalClock").innerText = time; 
+			   let t = setTimeout(function(){ clock${id}Time() }, 1000);
+			}	
+				
+				
+			clock${id}setDate();
+			setInterval(clock${id}setDate, 1000);
+			clock${id}Time();
+		}
+		setTimeout(clock${id}init);
+	`;
+	
+}
+/* end of clock injection functions */
+
+/* Recurring schedule */
 function generateRecurringHTML(widget,id) {
 	return `
 		<p id="widget${id}"></p>
@@ -154,9 +271,9 @@ function generateRecurringScript(widget,id) {
 		setTimeout(widget${id}init);
 	`;
 }
-
 /* end recurring schedule */
 
+/* main page clock functions */
 function currentTime() {
   let date = new Date(); 
   let hh = date.getHours();
@@ -199,3 +316,59 @@ function currentDate(){
 	
 	document.getElementById("todayDate").innerText = today;
 }
+/* main page clock functions */
+
+/* add clock functions */
+function currentTimeWidget() {
+  let date = new Date();
+  let timeZoneValue = document.getElementById("timeZoneSelected").value;
+  date.getUTCHours();
+  date.setUTCHours(timeZoneValue);
+  let hh = date.getUTCHours();
+  let mm = date.getUTCMinutes();
+  let ss = date.getUTCSeconds();
+  let session = "AM";
+  
+
+  if(hh === 0) {
+      hh = 12;
+  }
+  if(hh > 12){
+      hh = hh - 12;
+      session = "PM";
+   }
+
+   hh = (hh < 10) ? "0" + hh : hh;
+   mm = (mm < 10) ? "0" + mm : mm;
+   ss = (ss < 10) ? "0" + ss : ss;
+    
+   let time = hh + ":" + mm + ":" + ss + " " + session;
+
+   document.getElementById("digitalClockWidget").innerText = time; 
+   let t = setTimeout(function(){ currentTimeWidget() }, 1000);
+}
+/* AddClock Functions end */
+
+/* Add New Event to Upcoming functions */
+function generateRecurringEventHTML(eventitem, id){
+	return `
+	<li id="eventitem${id}li"></li>	
+	`;
+}
+
+function generateRecurringEventScript(eventitem, id) {
+	return `
+		function eventitem${id}init() {
+			function eventitem${id}run() {
+				var elem = document.getElementById("eventitem${id}li");
+				var str = "${eventitem.eventday} - ${eventitem.name} - ";
+				elem.innerHTML = "${eventitem.eventday} - ${eventitem.name} - ${eventitem.time}";
+			}
+			setInterval(eventitem${id}run, 1000);
+		}
+		setTimeout(eventitem${id}init);
+	`;
+}
+/* end of Add New Event to Upcoming */
+
+

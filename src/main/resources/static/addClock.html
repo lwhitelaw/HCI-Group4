@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<script src="script.js"></script>
+		<title>Clock</title>
+			<script>
+		function init() {
+			
+			//Bind Event Listener
+			document.getElementById("accept").addEventListener("click",clickedAccept);
+			document.getElementById("timeZoneSelected").addEventListener("input", init);
+					
+			const secondHand = document.querySelector('.second-hand');
+			const minsHand = document.querySelector('.min-hand');
+			const hourHand = document.querySelector('.hour-hand');
+			const timeZoneValue = document.getElementById("timeZoneSelected").value;
+			
+			
+			//setup 
+			var uidata = getUIObject();
+			uidata.addclock = {};
+			uidata.addclock.timeZoneValue = timeZoneValue;
+			uidata.addclock.timeZoneTextValue = "Widget Clock";
+			setUIObject(uidata);
+			
+
+			function setDate() {
+	  			const now = new Date();
+	 
+	  			const seconds = now.getUTCSeconds();
+	  			const secondsDegrees = ((seconds / 60) * 360) + 90;
+	  			secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+	 
+	  			const mins = now.getUTCMinutes();
+	  			const minsDegrees = ((mins / 60) * 360) + ((seconds/60)*6) + 90;
+	  			minsHand.style.transform = `rotate(${minsDegrees}deg)`;
+	 			
+	  			now.getUTCHours();
+	  		 	now.setUTCHours(timeZoneValue);
+	  			const hour = now.getUTCHours();
+	  			const hourDegrees = ((hour / 12) * 360) + ((mins/60)*30) + 90;
+	  			hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+	  			
+	  			
+
+	  			
+				}
+			setDate();
+			setInterval(setDate, 1000);
+			currentTimeWidget();
+			setUIObject(uidata);
+			
+			}
+			
+		
+		function clickedAccept() {
+			var uidata = getUIObject();
+			var permdata = getDataObject();
+			var name = document.getElementById("timeZoneSelected");
+			
+			// write out schedule object
+			if (permdata.clocklist === undefined) {
+				permdata.clocklist = [];
+			}
+			
+			
+			var obj = {};
+			obj.type = "newClock";
+			obj.name = uidata.addclock.timeZoneTextValue;
+			obj.timeZoneValue = uidata.addclock.timeZoneValue;
+			
+			// push
+			permdata.clocklist.push(obj);
+			setDataObject(permdata);
+			
+		 }
+			
+		// init
+		setTimeout(init);
+	
+	</script>	
+	</head>
+	<body>
+		<!-- Header bar -->
+		<header class="header neutral-gradient">
+			<span class="header-font">New World Clock</span>
+			<span class="header-font right"><a class="blank" href="index.html">&#x2302;</a></span>
+			<span class="header-font right"><a class="blank" href="additem.html">&#x2B05;</a></span>
+		</header>
+		
+		<!-- Centre body area -->
+		<!-- Item controls -->
+		<div>
+			<h1 class="TimeZoneLabel">TimeZone</h1>
+			<form action="" >
+  			<label for="timeZone" Class="chooseTimeZoneLabel">Choose a TimeZone:</label>
+  			<select id="timeZoneSelected" name="timeZone" >
+    		<option value="0" selected>UTC</option>
+    		<option value="1">UTC  +1:00 </option>
+    		<option value="2">UTC  +2:00 </option>
+    		<option value="3">UTC  +3:00 </option>
+    		<option value="4">UTC  +4:00 </option>
+    		<option value="5">UTC  +5:00 </option>
+    		<option value="6">UTC  +6:00 </option>
+    		<option value="7">UTC  +7:00 </option>
+    		<option value="8">UTC  +8:00 </option>
+    		<option value="9">UTC  +9:00 </option>
+    		<option value="10">UTC  +10:00 </option>
+    		<option value="11">UTC  +11:00 </option>
+    		<option value="12">UTC  +12:00 </option>
+    		<option value="13">UTC  -11:00</option>
+    		<option value="14">UTC  -10:00</option>
+    		<option value="15">UTC  -9:00</option>
+    		<option value="16">UTC  -8:00</option>
+    		<option value="17">UTC  -7:00</option>
+    		<option value="18">UTC  -6:00</option>
+    		<option value="19">UTC  -5:00</option>
+    		<option value="20">UTC  -4:00</option>
+    		<option value="21">UTC  -3:00</option>
+    		<option value="22">UTC  -2:00</option>
+    		<option value="23">UTC  -1:00</option>
+  			</select>
+			</form>
+				<div id="analogClockWidget" class="analogClock" style="Float:left;">
+				<div class="outer-clock-face">
+				<div class="marking marking-one"></div>
+				<div class="marking marking-two"></div>
+				<div class="marking marking-three"></div>
+				<div class="marking marking-four"></div>
+				<div class="inner-clock-face">
+				<div class="hand hour-hand"></div>
+				<div class="hand min-hand"></div>
+				<div class="hand second-hand"></div>
+       					</div>
+       					</div>
+       					</div>
+				<div id="digitalClockWidget" class="digitalClockWidget" style="Float:left; padding-top:10pt;"></div>
+
+
+
+		
+		</div>
+		<!-- Footer bar -->
+		<footer class="footer neutral-gradient">
+			<!-- nonbreaking space stops browser from removing footer -->
+			<a class="red-gradient header-font" href="index.html">&#x1F5D9; Cancel</a>
+			<a id="accept" class="green-gradient header-font" href="index.html">&#x02713; Accept</a>
+		</footer>
+	</body>
+</html>
