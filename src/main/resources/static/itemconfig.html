@@ -4,6 +4,7 @@
 		<link rel="stylesheet" href="style.css">
 		<script src="script.js"></script>
 		<title>Clock</title>
+
 	</head>
 	<body>
 		<!-- Header bar -->
@@ -18,21 +19,23 @@
 		<div>
 			<h1>Time</h1>
 			<!-- This might have to be restyled -->
-			<button class="grey-gradient large">M</button>
-			<button class="grey-gradient large">T</button>
-			<button class="grey-gradient large">W</button>
-			<button class="grey-gradient large">R</button>
-			<button class="grey-gradient large">F</button>
-			<button class="grey-gradient large">SA</button>
-			<button class="grey-gradient large">SU</button>
+			<button id="monday" class="grey-gradient large">M</button>
+			<button id="tuesday" class="grey-gradient large">T</button>
+			<button id="wednesday" class="grey-gradient large">W</button>
+			<button id="thursday" class="grey-gradient large">R</button>
+			<button id="friday" class="grey-gradient large">F</button>
+			<button id="saturday" class="grey-gradient large">SA</button>
+			<button id="sunday" class="grey-gradient large">SU</button>
 			<input class="grey-gradient" type="time">
 			<h1>Event type specific</h1>
+			<p></p>
+			<input id="eventName" class="grey-gradient" type="text" >
 		</div>
 		<!-- Footer bar -->
 		<footer class="footer neutral-gradient">
 			<!-- nonbreaking space stops browser from removing footer -->
 			<a class="red-gradient header-font" href="index.html">&#x1F5D9; Cancel</a>
-			<a class="green-gradient header-font" href="#">&#x02713; Accept</a>
+			 <a id="accept" class="green-gradient header-font" href="index.html">&#x02713; Accept</a>
 		</footer>
 	</body>
 </html>

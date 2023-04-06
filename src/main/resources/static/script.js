@@ -265,6 +265,56 @@ function currentTimeWidget() {
 
 /* AddClock Functions */
 
+/* Add New Event to Upcoming */
 
+function injectEventToUpcoming(){
+	var container = document.getElementById("eventItemList");
+	var objdata = getDataObject();
+	
+	// no widgetlist, so do nothing here
+	if (objdata.eventList === undefined) return;
+	
+	// process widgets
+	var id = 0;
+	for (event of objdata.eventList) {
+		if (event.type === "event") {
+			// recurring schedule widget
+			var li = document.createElement("li");
+			li.id = "event" + id;
+			li.innerHTML = generateRecurringEventHTML(event,id);
+			// make script
+			var script = document.createElement("script");
+			script.text = generateRecurringEventScript(event,id);
+			
+			container.appendChild(li);
+			container.appendChild(script);
+		}
+		id++;
+	}
+	
+}
+
+function generateRecurringEventHTML(event, id){
+	return `
+	<li id="event${id}"></li>	
+	`
+}
+
+function generateRecurringEventScript(event, id) {
+	
+return `
+		function event${id}init() {
+			function event${id}run() {
+				var elem = document.getElementById("event${id}");
+				var str = "${event.name} - ";
+				elem.innerHTML = "${event.name} - ${event.time}";
+			}
+			setInterval(event${id}run, 1000);
+		}
+		setTimeout(event${id}init);
+	`;
+}
+
+/* end of Add New Event to Upcoming */
 
 
