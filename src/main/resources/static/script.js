@@ -291,7 +291,6 @@ function currentTimeWidget() {
    document.getElementById("digitalClockWidget").innerText = time; 
    let t = setTimeout(function(){ currentTimeWidget() }, 1000);
 }
-
 /* AddClock Functions end */
 
 /* Add New Event to Upcoming functions */
