@@ -105,10 +105,9 @@ function generateRecurringClock(clock, id) {
 function generateRecurringClockScript(clock, id){
 	return `
 		function clock${id}init() {  
-		function clock${id}run() { 
-			const secondHand = document.getElementByClassName("clock${id}hand second-hand");
-			const minsHand = document.getElementByClassName("clock${id}hand min-hand");
-			const hourHand = document.getElementByClassName("clock${id}hand hour-hand");
+			const secondHand = document.querySelector('clock${id}hand.second-hand');
+			const minsHand = document.querySelector('clock${id}hand.min-hand');
+			const hourHand = document.querySelector('div.clock${id}hand.hour-hand');
 			const timeZoneValue = ${clock.timeZoneValue};
 	
 			function clock${id}setDate() {
@@ -163,8 +162,7 @@ function generateRecurringClockScript(clock, id){
 			clock${id}Time();
 			setTimeout(clock${id}init);
 		}
-	}	
-`;
+	`;
 	
 }
 /* end of injection */
