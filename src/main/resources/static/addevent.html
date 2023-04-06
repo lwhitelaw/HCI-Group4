@@ -36,8 +36,27 @@
 			function clickedAccept() {
 				var uidata = getUIObject();
 				var permdata = getDataObject();
+				var eventday;
 				var name = document.getElementById("eventName").value;
 				
+				if (uidata.addevent.monday = true){
+					eventday = "Monday";
+				}else if(uidata.addevent.tuesday = true){
+					eventday = "Tuesday";
+				}else if(uidata.addevent.wednesday = true){
+					eventday = "Wednesday";
+				}else if(uidata.addevent.thursday = true){
+					eventday = "Thursday";
+				}else if(uidata.addevent.friday = true){
+					eventday = "Friday";
+				}else if(uidata.addevent.saturday = true){
+					eventday = "Saturday";
+				}else if(uidata.addevent.sunday = true){
+					eventday = "Sunday";
+				}else{
+					eventday = "";
+				}
+							
 				var inputEle = document.getElementById('time');
 				var timeSplit = inputEle.value.split(':'),
 				    hours,
@@ -60,23 +79,21 @@
 				if (permdata.eventlist === undefined) {
 					permdata.eventlist = [];
 				}
+				
+				var timeValue = hours + ':' + minutes + ' ' + meridian;
 				// make obj
 				var obj = {};
 				obj.type = "event";
 				obj.name = name;
-				obj.monday = uidata.addevent.monday;
-				obj.tuesday = uidata.addevent.tuesday;
-				obj.wednesday = uidata.addevent.wednesday;
-				obj.thursday = uidata.addevent.thursday;
-				obj.friday = uidata.addevent.friday;
-				obj.saturday = uidata.addevent.saturday;
-				obj.sunday = uidata.addevent.sunday;
-				obj.time = document.getElementById("time").value;
-				obj.meridian = meridian;
+				obj.eventday = eventday;
+				obj.time = timeValue
 				// push
 				permdata.eventlist.push(obj);
 				setDataObject(permdata);
 			}
+			
+
+			
 			
 			// button toggling
 			function toggleButton(name) {
@@ -95,6 +112,7 @@
 					uidata.addevent[name] = false;
 				}
 				setUIObject(uidata);
+
 			}			
 			// init
 			setTimeout(init);
