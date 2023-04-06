@@ -79,6 +79,35 @@ function injectClocks() {
 	
 }
 
+/* Injection of upcoming events */
+function injectEventToUpcoming() {
+	var container = document.getElementById("eventItemList");
+	var objdata = getDataObject();
+	
+	// no eventlist, so do nothing here
+	if (objdata.eventlist === undefined) return;
+	
+	// process events
+	var id = 0;
+	for (eventitem of objdata.eventlist) {
+		if (eventitem.type === "event") {
+			// recurring event 
+			var li = document.createElement("li");
+			li.id = "eventitem" + id;
+			li.innerHTML = generateRecurringEventHTML(eventitem, id);
+			// make script
+			var script = document.createElement("script");
+			script.text = generateRecurringEventScript(eventitem, id);
+			
+			container.appendChild(li);
+			container.appendChild(script);
+		}
+		id++;
+	}
+	
+}
+
+/* injection of clock fucntions */
 function generateRecurringClock(clock, id) {
 	
 	return `
@@ -100,7 +129,6 @@ function generateRecurringClock(clock, id) {
 	`;
 	
 }
-
 
 function generateRecurringClockScript(clock, id){
 	return `
@@ -165,10 +193,9 @@ function generateRecurringClockScript(clock, id){
 	`;
 	
 }
-/* end of injection */
+/* end of clock injection functions */
 
 /* Recurring schedule */
-
 function generateRecurringHTML(widget,id) {
 	return `
 		<p id="widget${id}"></p>
@@ -188,9 +215,9 @@ function generateRecurringScript(widget,id) {
 		setTimeout(widget${id}init);
 	`;
 }
-
 /* end recurring schedule */
 
+/* main page clock functions */
 function currentTime() {
   let date = new Date(); 
   let hh = date.getHours();
@@ -233,7 +260,9 @@ function currentDate(){
 	
 	document.getElementById("todayDate").innerText = today;
 }
+/* main page clock functions */
 
+/* add clock functions */
 function currentTimeWidget() {
   let date = new Date();
   let timeZoneValue = document.getElementById("timeZoneSelected").value;
@@ -263,58 +292,28 @@ function currentTimeWidget() {
    let t = setTimeout(function(){ currentTimeWidget() }, 1000);
 }
 
-/* AddClock Functions */
+/* AddClock Functions end */
 
-/* Add New Event to Upcoming */
-
-function injectEventToUpcoming(){
-	var container = document.getElementById("eventItemList");
-	var objdata = getDataObject();
-	
-	// no widgetlist, so do nothing here
-	if (objdata.eventList === undefined) return;
-	
-	// process widgets
-	var id = 0;
-	for (event of objdata.eventList) {
-		if (event.type === "event") {
-			// recurring schedule widget
-			var li = document.createElement("li");
-			li.id = "event" + id;
-			li.innerHTML = generateRecurringEventHTML(event,id);
-			// make script
-			var script = document.createElement("script");
-			script.text = generateRecurringEventScript(event,id);
-			
-			container.appendChild(li);
-			container.appendChild(script);
-		}
-		id++;
-	}
-	
-}
-
-function generateRecurringEventHTML(event, id){
+/* Add New Event to Upcoming functions */
+function generateRecurringEventHTML(eventitem, id){
 	return `
-	<li id="event${id}"></li>	
-	`
-}
-
-function generateRecurringEventScript(event, id) {
-	
-return `
-		function event${id}init() {
-			function event${id}run() {
-				var elem = document.getElementById("event${id}");
-				var str = "${event.name} - ";
-				elem.innerHTML = "${event.name} - ${event.time}";
-			}
-			setInterval(event${id}run, 1000);
-		}
-		setTimeout(event${id}init);
+	<li id="eventitem${id}li"></li>	
 	`;
 }
 
+function generateRecurringEventScript(eventitem, id) {
+	return `
+		function eventitem${id}init() {
+			function eventitem${id}run() {
+				var elem = document.getElementById("eventitem${id}li");
+				var str = "${eventitem.name} - ";
+				elem.innerHTML = "${eventitem.name} - ${eventitem.time}";
+			}
+			setInterval(eventitem${id}run, 1000);
+		}
+		setTimeout(eventitem${id}init);
+	`;
+}
 /* end of Add New Event to Upcoming */
 
 
