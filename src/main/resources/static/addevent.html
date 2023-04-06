@@ -6,6 +6,7 @@
 		<title>Clock</title>
 		<script>
 				function init() {
+					
 				// setup ui state
 				var uidata = getUIObject();
 				uidata.addevent = {};
@@ -15,7 +16,7 @@
 				uidata.addevent.thursday = false;
 				uidata.addevent.friday = false;
 				uidata.addevent.saturday = false;
-				uidata.addevent.sunday = false;
+				uidata.addevent.sunday = false;		 
 				setUIObject(uidata);
 				// bind listeners
 				document.getElementById("accept").addEventListener("click",clickedAccept);
@@ -26,14 +27,35 @@
 				document.getElementById("friday").addEventListener("click",() => toggleButton("friday"));
 				document.getElementById("saturday").addEventListener("click",() => toggleButton("saturday"));
 				document.getElementById("sunday").addEventListener("click",() => toggleButton("sunday"));
-			}
+				
+
+				}
+			
 			
 			// commits data to client storage on accept being clicked
 			function clickedAccept() {
 				var uidata = getUIObject();
 				var permdata = getDataObject();
 				var name = document.getElementById("eventName").value;
-				var time = document.getElementById("time").value;
+				
+				var inputEle = document.getElementById('time');
+				var timeSplit = inputEle.value.split(':'),
+				    hours,
+				    minutes,
+				    meridian;
+				  hours = timeSplit[0];
+				  minutes = timeSplit[1];
+				  if (hours > 12) {
+				    meridian = 'PM';
+				    hours -= 12;
+				  } else if (hours < 12) {
+				    meridian = 'AM';
+				    if (hours == 0) {
+				      hours = 12;
+				    }
+				  } else {
+				    meridian = 'PM';
+				  }	
 				// write out schedule object
 				if (permdata.eventlist === undefined) {
 					permdata.eventlist = [];
@@ -49,7 +71,8 @@
 				obj.friday = uidata.addevent.friday;
 				obj.saturday = uidata.addevent.saturday;
 				obj.sunday = uidata.addevent.sunday;
-				obj.time = time;
+				obj.time = document.getElementById("time").value;
+				obj.meridian = meridian;
 				// push
 				permdata.eventlist.push(obj);
 				setDataObject(permdata);
@@ -72,8 +95,7 @@
 					uidata.addevent[name] = false;
 				}
 				setUIObject(uidata);
-			}
-			
+			}			
 			// init
 			setTimeout(init);
 			</script>
@@ -98,7 +120,7 @@
 			<button id="friday" class="grey-gradient large">F</button>
 			<button id="saturday" class="grey-gradient large">SA</button>
 			<button id="sunday" class="grey-gradient large">SU</button>
-			<input id="time" class="grey-gradient" type="time">
+			<input id="time" onchange="init()" class="grey-gradient" type="time">
 			<h1>Event type specific</h1>
 			<p>Enter in Event Name Below:</p>
 			<input id="eventName" class="grey-gradient" type="text" >
