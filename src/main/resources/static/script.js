@@ -82,7 +82,7 @@ function injectClocks() {
 function generateRecurringClock(clock, id) {
 	
 	return `
-		<h3 class="clock${id}Label" id = "clock${id}Label" style="position: relative;left:20%;">${clock.name}</h3>
+		<h3 class="clock${id}Label" id = "clock${id}Label" style="position: relative;left:15%;padding-bottom:10pt;">${clock.name}</h3>
 		<div id="clock${id}" class="analogClock">
 				<div class="outer-clock-face">
 				<div class="marking marking-one"></div>
@@ -90,9 +90,9 @@ function generateRecurringClock(clock, id) {
 				<div class="marking marking-three"></div>
 				<div class="marking marking-four"></div>
 				<div class="inner-clock-face">
-				<div class="clock${id}hand hour-hand" style="width: 30%;z-index: 3;"></div>
-				<div class="clock${id}hand min-hand" style="height: 3px;z-index: 10;width: 40%;"></div>
-				<div class="clock${id}hand second-hand" style="background: #ee791a;width: 45%;height: 2px;"></div>
+				<div id="clock${id}HHand" class="hand hour-hand"></div>
+				<div id="clock${id}MHand" class="hand min-hand"></div>
+				<div id="clock${id}SHand" class="hand second-hand"></div>
        					</div>
        					</div>
        					</div>
@@ -105,9 +105,9 @@ function generateRecurringClock(clock, id) {
 function generateRecurringClockScript(clock, id){
 	return `
 		function clock${id}init() {  
-			const secondHand = document.querySelector('clock${id}hand.second-hand');
-			const minsHand = document.querySelector('clock${id}hand.min-hand');
-			const hourHand = document.querySelector('div.clock${id}hand.hour-hand');
+			const secondHand = document.getElementById('clock${id}SHand');
+			const minsHand = document.getElementById('clock${id}MHand');
+			const hourHand = document.getElementById('clock${id}HHand');
 			const timeZoneValue = ${clock.timeZoneValue};
 	
 			function clock${id}setDate() {
@@ -160,8 +160,8 @@ function generateRecurringClockScript(clock, id){
 			clock${id}setDate();
 			setInterval(clock${id}setDate, 1000);
 			clock${id}Time();
-			setTimeout(clock${id}init);
 		}
+		setTimeout(clock${id}init);
 	`;
 	
 }
