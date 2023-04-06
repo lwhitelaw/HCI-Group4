@@ -306,7 +306,7 @@ function generateRecurringEventScript(eventitem, id) {
 			function eventitem${id}run() {
 				var elem = document.getElementById("eventitem${id}li");
 				var str = "${eventitem.name} - ";
-				elem.innerHTML = "${eventitem.name} - ${eventitem.time}";
+				elem.innerHTML = "${eventitem.name} - ${eventitem.time} ${eventitem.meridian}";
 			}
 			setInterval(eventitem${id}run, 1000);
 		}
