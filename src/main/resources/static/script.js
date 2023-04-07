@@ -264,12 +264,35 @@ function generateRecurringScript(widget,id) {
 			function widget${id}run() {
 				var elem = document.getElementById("widget${id}");
 				var str = "${widget.name} - ";
-				elem.innerHTML = "${widget.name} - ${widget.time}";
+				if (isScheduleToday(widget)) {
+					str += "Today ";
+				} else {
+					if (widget.sunday) str += "Sunday ";
+					if (widget.monday) str += "Monday ";
+					if (widget.tuesday) str += "Tuesday ";
+					if (widget.wednesday) str += "Wednesday ";
+					if (widget.thursday) str += "Thursday ";
+					if (widget.friday) str += "Friday ";
+					if (widget.saturday) str += "Saturday ";
+				}
+				elem.innerHTML = str + ${widget.time}";
 			}
 			setInterval(widget${id}run, 1000);
 		}
 		setTimeout(widget${id}init);
 	`;
+}
+
+function isScheduleToday(widget) {
+	Date now = new Date();
+	if (widget.sunday && now.getDay() === 0) return true;
+	if (widget.monday && now.getDay() === 1) return true;
+	if (widget.tuesday && now.getDay() === 2) return true;
+	if (widget.wednesday && now.getDay() === 3) return true;
+	if (widget.thursday && now.getDay() === 4) return true;
+	if (widget.friday && now.getDay() === 5) return true;
+	if (widget.saturday && now.getDay() === 6) return true;
+	return false;
 }
 /* end recurring schedule */
 
