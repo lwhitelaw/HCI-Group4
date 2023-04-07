@@ -264,16 +264,18 @@ function generateRecurringScript(widget,id) {
 			function widget${id}run() {
 				var elem = document.getElementById("widget${id}");
 				var str = "${widget.name} - ";
-				if (isScheduleToday(widget)) {
+				// tricky shunting the obj through JSON
+				var pri = JSON.parse("${JSON.stringify(widget).replaceAll('"','\\"')}");
+				if (isScheduleToday(pri)) {
 					str += "Today ";
 				} else {
-					if (widget.sunday) str += "Sunday ";
-					if (widget.monday) str += "Monday ";
-					if (widget.tuesday) str += "Tuesday ";
-					if (widget.wednesday) str += "Wednesday ";
-					if (widget.thursday) str += "Thursday ";
-					if (widget.friday) str += "Friday ";
-					if (widget.saturday) str += "Saturday ";
+					if (pri.sunday) str += "Sunday ";
+					if (pri.monday) str += "Monday ";
+					if (pri.tuesday) str += "Tuesday ";
+					if (pri.wednesday) str += "Wednesday ";
+					if (pri.thursday) str += "Thursday ";
+					if (pri.friday) str += "Friday ";
+					if (pri.saturday) str += "Saturday ";
 				}
 				elem.innerHTML = str + "${widget.time}";
 			}
