@@ -48,7 +48,14 @@
 				obj.name = uidata.itemconfig.eventname;
 				obj.extrainfo = "";
 				obj.day = uidata.itemconfig.day;
-				obj.time = time;
+				// reform time string into 12-hour format
+				var split = time.split(":");
+				var h = split[0];
+				var m = split[1];
+				Date date = new Date():
+				date.setHours(h);
+				date.setMinutes(m);
+				obj.time = date.toLocaleTimeString({},{timeStyle: "short"});
 				// push
 				permdata.eventlist.push(obj);
 				setDataObject(permdata);
