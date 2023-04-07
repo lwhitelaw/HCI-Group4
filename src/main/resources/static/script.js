@@ -284,7 +284,7 @@ function generateRecurringScript(widget,id) {
 }
 
 function isScheduleToday(widget) {
-	Date now = new Date();
+	var now = new Date();
 	if (widget.sunday && now.getDay() === 0) return true;
 	if (widget.monday && now.getDay() === 1) return true;
 	if (widget.tuesday && now.getDay() === 2) return true;
