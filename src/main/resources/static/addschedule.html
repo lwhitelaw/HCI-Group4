@@ -49,6 +49,14 @@
 				obj.friday = uidata.addschedule.friday;
 				obj.saturday = uidata.addschedule.saturday;
 				obj.sunday = uidata.addschedule.sunday;
+				// reform time string into 12-hour format
+				var split = time.split(":");
+				var h = split[0];
+				var m = split[1];
+				Date date = new Date():
+				date.setHours(h);
+				date.setMinutes(m);
+				obj.time = date.toLocaleTimeString({},{timeStyle: "short"});
 				obj.time = time;
 				// push
 				permdata.widgetlist.push(obj);
