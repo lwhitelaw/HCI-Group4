@@ -275,7 +275,7 @@ function generateRecurringScript(widget,id) {
 					if (widget.friday) str += "Friday ";
 					if (widget.saturday) str += "Saturday ";
 				}
-				elem.innerHTML = str + ${widget.time}";
+				elem.innerHTML = str + "${widget.time}";
 			}
 			setInterval(widget${id}run, 1000);
 		}
